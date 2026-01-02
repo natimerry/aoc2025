@@ -1,26 +1,27 @@
 
-pub fn max_joltage(bank: &str) -> usize
+pub fn max_joltage(bank: &str, n: usize) -> usize
 {
-    let mut max_val = 0u64;
-    let mut max_first  = 0u64;
+    let m = bank.len();
+    let mut to_rem = m -n;
 
-    for (i,ch) in bank.chars().enumerate()
-    {
-        let digit = ch.to_digit(10).unwrap() as u64;
+    let mut stack: Vec<char> = Vec::with_capacity(n);
 
-        if i > 0{
-            max_val = max_val.max(max_first*10 + digit);
+    for ch in bank.chars(){
+        while !stack.is_empty() && to_rem > 0 && stack.last().unwrap() < &ch
+        {
+            stack.pop();
+            to_rem-=1;
         }
-        max_first = max_first.max(digit);
+
+        stack.push(ch);
     }
 
-    max_val as usize
-
+    stack.iter().collect::<String>().parse().unwrap()
 }
 #[aoc(day3,part1)]
 pub fn part1(input: &[&str]) -> usize
 {
-    let x: usize = input.iter().map(|bank| max_joltage(bank)).sum();
+    let x: usize = input.iter().map(|bank| max_joltage(bank,2)).sum();
 
     
     x
