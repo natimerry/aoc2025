@@ -7,17 +7,18 @@ pub fn max_joltage(bank: &str, n: usize) -> usize
     let mut stack: Vec<char> = Vec::with_capacity(n);
 
     for ch in bank.chars(){
-        while !stack.is_empty() && to_rem > 0 && stack.last().unwrap() < &ch
-        {
+        while !stack.is_empty() && to_rem > 0 && stack.last().unwrap() < &ch {
             stack.pop();
-            to_rem-=1;
+            to_rem -= 1;
         }
-
         stack.push(ch);
-    }
 
-    stack.iter().collect::<String>().parse().unwrap()
+    }
+    stack.truncate(n);
+
+    stack.iter().collect::<String>().parse().unwrap_or(0)
 }
+
 #[aoc(day3,part1)]
 pub fn part1(input: &[&str]) -> usize
 {
@@ -26,7 +27,6 @@ pub fn part1(input: &[&str]) -> usize
     
     x
 }
-
 #[aoc(day3,part2)]
 pub fn part2(input: &[&str]) -> usize
 {
@@ -35,4 +35,6 @@ pub fn part2(input: &[&str]) -> usize
     
     x
 }
+
+
 

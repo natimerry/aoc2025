@@ -14,7 +14,6 @@ pub fn grid_chars(input: &str) -> Vec<Vec<char>> {
         .collect()
 }
 
-
 pub fn coords_i64(input: &str) -> Vec<(i64, i64)> {
     input
         .lines()
@@ -24,7 +23,6 @@ pub fn coords_i64(input: &str) -> Vec<(i64, i64)> {
         })
         .collect()
 }
-
 
 pub fn blocks(input: &str) -> Vec<&str> {
     input.split("\n\n").collect()
