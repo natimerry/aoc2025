@@ -1,4 +1,4 @@
-use crate::utils::{math::wrap_add, parser::grid_chars};
+use crate::utils::parser::grid_chars;
 
 #[aoc(day4, part1)]
 pub fn part1(input: &str) -> usize {
@@ -38,30 +38,34 @@ pub fn part1(input: &str) -> usize {
             }
 
             if count < 4 {
-                access+=1;
+                access += 1;
             }
         }
     }
     access as usize
 }
 
-
 #[aoc(day4, part2)]
 pub fn part2(input: &str) -> usize {
     let mut grid = grid_chars(input);
     let directions = [
-        (-1, -1), (-1, 0), (-1, 1),
-        (0, -1),           (0, 1),
-        (1, -1),  (1, 0),  (1, 1),
+        (-1, -1),
+        (-1, 0),
+        (-1, 1),
+        (0, -1),
+        (0, 1),
+        (1, -1),
+        (1, 0),
+        (1, 1),
     ];
 
     let mut total_removed = 0;
     let mut changed = true;
-    
+
     while changed {
         changed = false;
         let mut to_remove = Vec::new();
-        
+
         for i in 0..grid.len() {
             for j in 0..grid[i].len() {
                 if grid[i][j] != '@' {
@@ -88,16 +92,16 @@ pub fn part2(input: &str) -> usize {
                 }
             }
         }
-        
+
         if !to_remove.is_empty() {
             changed = true;
             total_removed += to_remove.len();
-            
+
             for (i, j) in to_remove {
                 grid[i][j] = '.';
             }
         }
     }
-    
+
     total_removed
 }

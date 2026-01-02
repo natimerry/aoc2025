@@ -26,7 +26,7 @@ fn part1(input: &str) -> usize {
                 if current_beams.contains(&j) {
                     // this means we have hit a splitter
 
-                    let mut x = takyon_beam.entry(i + 1).or_default();
+                    let x = takyon_beam.entry(i + 1).or_default();
                     x.push(j - 1);
                     x.push(j + 1);
                     count += 1;

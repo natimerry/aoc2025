@@ -1,4 +1,3 @@
-use crate::utils::parser::grid_chars;
 
 #[aoc(day6, part1)]
 fn part1(input: &str) -> usize {
