@@ -26,3 +26,13 @@ pub fn part1(input: &[&str]) -> usize
     
     x
 }
+
+#[aoc(day3,part2)]
+pub fn part2(input: &[&str]) -> usize
+{
+    let x: usize = input.iter().map(|bank| max_joltage(bank,12)).sum();
+
+    
+    x
+}
+
